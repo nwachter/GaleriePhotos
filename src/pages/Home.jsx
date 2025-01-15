@@ -41,7 +41,7 @@ const Home = () => {
 
     return (
 
-        <div className="z-[2] h-full px-[5vw] mx-auto px-8 pt-16">
+        <div className="h-full px-[5vw] mx-auto px-8 pt-16">
             {/* <h1 className="text-red-400 pl-3 text-4xl font-bebas-neue font-bold py-6">Galère-riz</h1> */}
             <SearchBar
                 onFilter={handleFilter}

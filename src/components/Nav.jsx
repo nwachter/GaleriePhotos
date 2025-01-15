@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Nav = () => {
     return (
 
-        <nav className="bg-[#412234] dark:bg-gray-900 min-h-18 fixed w-full z-[20] top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+        <nav className="bg-[#412234] min-h-18 fixed w-full z-[20] top-0 left-0 border-b border-gray-200 dark:border-gray-600">
             <div className="flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={brandNoBg} className="mr-3 h-28 sm:h-9" alt="Flowbite React Logo" />
@@ -36,7 +36,7 @@ const Nav = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/'} className="block py-2 px-3 hover:text-[#F3B7A5] text-melon-50  rounded bg-transparent transition-all md:p-0 active:">
+                            <Link to={'/about'} className="block py-2 px-3 hover:text-[#F3B7A5] text-melon-50  rounded bg-transparent transition-all md:p-0 active:">
                                 A Propos
                             </Link>
                         </li>

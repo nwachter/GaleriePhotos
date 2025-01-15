@@ -24,38 +24,38 @@ const PictureDetails = () => {
             }
         }
         const pictureData = fetchPictureById(id);
-        console.log("pictureData : ", pictureData);
+
 
     }, [id])
 
     if (error) {
         return (
-            <div className="flex items-center justify-center h-screen">
+            <div className="flex items-center justify-center h-full w-full relative pt-10">
                 <Alert message="Image non reconnue, veuillez réessayer" description={error} type="error" showIcon />
             </div>
         );
     }
     return (
-        <div className="z-[2] relative h-full w-full text-slate-900 px-4 pt-16 pb-4 md:px-6 py-6">
-            <div className="max-w-6xl mx-auto flex flex-col h-[80vh]">
-                <h1 className="text-2xl font-poppins mb-6 md:text-3xl font-bold text-[#412234] purple:text-[#7765E3]">
+        <div className="relative h-full w-full text-slate-900 px-4 pt-10 md:px-6 pb-6">
+            <div className="max-w-6xl mx-auto flex -center flex-col h-full w-fit">
+                <h1 className="text-2xl old:font-poppins font-outfit  mb-8 md:text-3xl font-bold text-[#412234]">
                     {picture?.title}
                 </h1>
 
-                <div className="flex-1  overflow-hidden rounded-lg shadow-lg border border-stroke/10 bg-gradient-to-t from-melon-50/[0.07] via-melon-500/[0] to-melon-500/[0.4]">
-                    <div className="h-full flex flex-col">
-                        <div className=" flex-1 overflow-hidden">
-                            <Spin spinning={isLoading}>
-                                <img
-                                    src={picture?.url}
-                                    alt={picture?.title}
-                                    className="w-full h-full object-contain border border-orange-900/20 shadow-xl"
-                                />
-                            </Spin>
-                        </div>
+                <div className="w-fit h-fit shadow-[0_2px_15px_3px_rgba(229,89,57,0.4),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden rounded-lg old:shadow-lg border border-stroke/10 bg-gradient-to-t from-melon-50/[0.07] via-melon-500/[0] to-melon-500/[0.4]">
+                    <div className="h-fit w-full flex items-stretch flex-col justify-stretch">
 
-                        <div className="bg-white/80 backdrop-blur-sm">
-                            <p className="px-6 py-4 font-corben text-base md:text-lg">
+                        <Spin spinning={isLoading}>
+                            <img
+                                src={picture?.url}
+                                alt={picture?.title}
+                                className="w-full h-[50vh] object-contain border-b-[1px] border-orange-900/20 shadow-xl"
+                            />
+                        </Spin>
+
+
+                        <div className="bg-slate-800/10 backdrop-blur-sm">
+                            <p className="px-6 py-4 font-playfairDisplay text-slate-800 bg-melon-50/20 text-base md:text-lg">
                                 {picture?.description}
                             </p>
                         </div>

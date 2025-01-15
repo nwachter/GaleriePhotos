@@ -14,30 +14,22 @@ const Pictures = (
 
     }
 
+    // const filteredPictures = pictures.sort((a, b) => {
+    //     sortOrder === 'dateAdded' ? new Date(b.dateAdded) + new Date(a.dateAdded) ? a.title.localeCompare(b.title)
+    // });
+
 
     if (error)
         return (
-            <div className="z-[2] flex items-center justify-center h-screen">
+            <div className="flex items-center justify-center h-screen">
                 <Alert message="Erreur" description={error} type="error" showIcon />
             </div>
         );
     return (
-        <div className='z-[2]'>
+        <div className=''>
             <Spin size="large" spinning={isLoading}>
                 <div className="grid h-full grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-                    {/* {pictures.map((picture, i) => (
-                    <Picture key={i} picture={picture} setSelectedPicture={setSelectedPicture} setModalOpen={setModalOpen} />
-                ))} */}
-                    {/* <Image.PreviewGroup
-                        items={pictures.map((picture) => picture.url)}
-                    >
-                        {pictures.map((picture, i) => {
-                            <Image
-                                width={200}
-                                src={picture.url}
-                            />
-                        })}
-                    </Image.PreviewGroup> */}
+
                     {pictures.map((picture) => (
                         <Image
                             width="auto"
@@ -45,9 +37,9 @@ const Pictures = (
                                 destroyOnClose: true,
                                 maskClassName: 'custom-mask',
                                 mask: (
-                                    <div className="w-full h-full flex flex-col items-center justify-center bg-black/60 opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                        <h3 className="text-white text-lg font-semibold m-0">{picture.title}</h3>
-                                        <p className="text-white m-0">{picture.description}</p>
+                                    <div className="w-full h-full flex flex-col items-center p-4 justify-center bg-black/60 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                        <h3 className="text-melon-50 text-lg font-outfit text-center font-semibold m-0">{picture.title}</h3>
+                                        <p className="text-melon-50 m-0 text-center">{picture.description}</p>
                                     </div>
                                 ),
                                 imageRender: (originalNode, info) => (
@@ -55,8 +47,8 @@ const Pictures = (
                                     <Picture picture={picture} setSelectedPicture={setSelectedPicture} setModalOpen={setModalOpen} />
                                 ),
                                 toolbarRender: () => (
-                                    <div className="block p-4 w-screen bg-melon-500/10 group-hover:scale-125 flex flex-col justify-end items-stretch text-white/70 text-center transition-all  duration-300 ease-in-out">
-                                        <h2 className="text-xl  font-corben font-semibold">{picture.title}</h2>
+                                    <div className="block p-4 w-screen bg-[##002500]/30 group-hover:scale-125 flex flex-col justify-end items-stretch text-white/70 text-center transition-all  duration-300 ease-in-out">
+                                        <h2 className="text-xl font-corben font-semibold">{picture.title}</h2>
                                         <p className="mt-2 shadow- text-[15px] font-caudex">{picture.description}</p>
                                     </div>),
                             }}
