@@ -1,64 +1,24 @@
 import Nav from './components/Nav';
-import SearchBar from './components/SearchBar';
-import React, { useState, useEffect } from 'react';
-import Pictures from './components/Pictures';
-import { usePictures } from './hooks/usePictures';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import PictureDetails from './pages/PictureDetails';
+import brandNoBg from './assets/images/brand-no-bg.png';
 
 function App() {
-  const { data: picturesData, isLoading: isLoadingPictures, error: errorPictures } = usePictures();
-  const [pictures, setPictures] = useState([]);
-  const [query, setQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-
-  useEffect(() => {
-    // Update the filtered pictures whenever picturesData, query, or selectedCategory changes
-    if (!picturesData) return;
-
-    let updatedPictures = picturesData;
-
-    if (selectedCategory) {
-      updatedPictures = updatedPictures.filter(
-        (picture) =>
-          picture.category.toLowerCase() === selectedCategory.toLowerCase()
-      );
-    }
-
-    if (query) {
-      updatedPictures = updatedPictures.filter((picture) =>
-        picture.title.toLowerCase().includes(query.toLowerCase()) || picture.dateAdded.includes(query)
-      );
-    }
-
-    setPictures(updatedPictures);
-  }, [picturesData, query, selectedCategory]);
-
-  const handleFilter = (e) => {
-    setSelectedCategory(e.target.value); // Update the selected category
-  };
-
-  const handleSearch = (e) => {
-    setQuery(e.target.value);
-  };
-
   return (
-    <div className="h-screen flex flex-col w-screen">
-      <Nav />
-      <div className="h-full px-[5vw] mx-auto px-8 pt-16">
-        <h1 className="text-red-400 pl-3 text-4xl font-bebas-neue font-bold py-6">Galère-riz</h1>
-        <SearchBar
-          onFilter={handleFilter}
-          onSearch={handleSearch}
-          pictures={pictures}
-        />
-        <div className="flex h-full justify-center p-4 w-full">
-          <Pictures
-            pictures={pictures ?? []}
-            isLoading={isLoadingPictures}
-            error={errorPictures}
-          />
-        </div>
+    <BrowserRouter>
+      <div className="h-screen relative bg-[#f7eceb] pt-16 w-screen">
+        <img src={brandNoBg} className="absolute left-10 top-10 z-[0] h-98 opacity-70 w-auto" alt="Galère-riz logo" />
+
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/picture/:id" element={<PictureDetails />} />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
+
   );
 }
 

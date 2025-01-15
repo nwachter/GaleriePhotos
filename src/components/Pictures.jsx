@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { getPictures } from '../services/pictures';
-import { usePictures } from '../hooks/usePictures';
-import { Spin, Flex, Alert, Switch, Image } from 'antd';
-import { Spinner } from 'flowbite-react';
-import { Modal } from "antd";
+import React, { useState } from 'react'
+import { Spin, Flex, Alert, Image } from 'antd';
 import Picture from './Picture';
-import PictureDetails from './PictureDetails';
 
 
 const Pictures = (
@@ -22,12 +17,12 @@ const Pictures = (
 
     if (error)
         return (
-            <div className="flex items-center justify-center h-screen">
+            <div className="z-[2] flex items-center justify-center h-screen">
                 <Alert message="Erreur" description={error} type="error" showIcon />
             </div>
         );
     return (
-        <>
+        <div className='z-[2]'>
             <Spin size="large" spinning={isLoading}>
                 <div className="grid h-full grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                     {/* {pictures.map((picture, i) => (
@@ -48,14 +43,15 @@ const Pictures = (
                             width="auto"
                             preview={{
                                 destroyOnClose: true,
+                                maskClassName: 'custom-mask',
+                                mask: (
+                                    <div className="w-full h-full flex flex-col items-center justify-center bg-black/60 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                        <h3 className="text-white text-lg font-semibold m-0">{picture.title}</h3>
+                                        <p className="text-white m-0">{picture.description}</p>
+                                    </div>
+                                ),
                                 imageRender: (originalNode, info) => (
-                                    // <div className='relative group'>
-                                    //     <img src={picture.url} alt={picture.title} className='h-auto max-w-full rounded-lg shadow-lg transition-all duration-300 ease-in-out group-hover:shadow-2xl' />
-                                    //     <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center text-white text-center transition-opacity duration-300 ease-in-out">
-                                    //         <h2 className="text-lg font-semibold">{picture.title}</h2>
-                                    //         <p className="mt-2 text-sm">{picture.description}</p>
-                                    //     </div>
-                                    // </div>
+
                                     <Picture picture={picture} setSelectedPicture={setSelectedPicture} setModalOpen={setModalOpen} />
                                 ),
                                 toolbarRender: () => (
@@ -65,16 +61,28 @@ const Pictures = (
                                     </div>),
                             }}
                             src={picture.url}
-                            mask={
-                                <div style={{ textAlign: 'center', color: '#fff' }}>
-                                    <h3 style={{ margin: 0 }}>{picture.title}</h3>
-                                    <p style={{ margin: 0 }}>{picture.description}</p>
-                                </div>
-                            }
 
                             maskClassName="custom-mask"
                         />
                     ))}
+                    <style jsx global>{`
+        .ant-image-mask-info {
+          display: none !important;
+        }
+        
+        .custom-mask {
+          width: "500px",
+          height: "500px",
+          background-color: "rgba(0, 0, 0, 0.5)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+          padding: "16px",
+          borderRadius: "8px",
+        }
+      `}</style>
                 </div>
             </Spin>
             {
@@ -85,7 +93,7 @@ const Pictures = (
 
 
             }
-        </>
+        </div>
 
     )
 }
