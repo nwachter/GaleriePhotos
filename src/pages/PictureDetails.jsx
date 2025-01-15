@@ -36,7 +36,7 @@ const PictureDetails = () => {
         );
     }
     return (
-        <div className=" relative h-full w-full bg-white text-slate-900 px-4 pt-16 pb-4 md:px-6 py-6">
+        <div className="z-[2] relative h-full w-full bg-white text-slate-900 px-4 pt-16 pb-4 md:px-6 py-6">
             <div className="max-w-6xl mx-auto flex flex-col h-[80vh]">
 
                 <h1 className=" text-2xl mb-6 md:text-3xl font-poppins font-bold text-[#412234] purple:text-[#7765E3]">

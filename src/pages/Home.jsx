@@ -42,14 +42,14 @@ const Home = () => {
     return (
 
         <div className="z-[2] h-full px-[5vw] mx-auto px-8 pt-16">
-            <h1 className="text-red-400 pl-3 text-4xl font-bebas-neue font-bold py-6">Galère-riz</h1>
+            {/* <h1 className="text-red-400 pl-3 text-4xl font-bebas-neue font-bold py-6">Galère-riz</h1> */}
             <SearchBar
                 onFilter={handleFilter}
                 onSearch={handleSearch}
                 pictures={pictures}
             />
 
-            <div className="flex h-full justify-center p-4 w-full">
+            <div className="flex h-full justify-center mb-4 pt-10 p-4 w-full">
                 <Pictures
                     pictures={pictures ?? []}
                     isLoading={isLoadingPictures}

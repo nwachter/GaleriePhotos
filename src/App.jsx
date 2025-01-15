@@ -8,14 +8,17 @@ import brandNoBg from './assets/images/brand-no-bg.png';
 function App() {
   return (
     <BrowserRouter>
-      <div className="h-screen relative bg-[#f7eceb] pt-16 w-screen">
-        <img src={brandNoBg} className="absolute left-10 top-10 z-[0] h-98 opacity-70 w-auto" alt="Galère-riz logo" />
+      <div className="z-[-1] h-screen relative bg-[#f7eceb] pt-16 w-screen">
+        <img src={brandNoBg} className="absolute left-10 top-10 z-[-1] h-98 opacity-70 w-auto" alt="Galère-riz logo" />
 
         <Nav />
-        <Routes>
+        <div className='z-[2]'>        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/picture/:id" element={<PictureDetails />} />
         </Routes>
+
+        </div>
+
       </div>
     </BrowserRouter>
 
